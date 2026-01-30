@@ -1,6 +1,8 @@
 #include "karten.h"
 #include <stdlib.h>
 
+//Das ist nur ein test hier also etwas überflüssig
+
 
 void karten_generieren(struct Karte deck[52]) {
     char *farben[4] = {"♠", "♥", "♦", "♣"};
