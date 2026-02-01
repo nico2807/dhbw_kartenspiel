@@ -5,4 +5,6 @@ set(CMAKE_C_STANDARD 23)
 
 add_executable(dhbw_kartenspiel main.c
         karten.h
-        karten.c)
+        karten.c
+        spieler_und_com.c
+        spieler_und_com.h)
