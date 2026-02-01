@@ -3,6 +3,9 @@
 
 #include <stdlib.h>
 #include <time.h>
+#include "spieler_und_com.h"
+
+
 
 void test(struct Karte deck[52]) {
     for (int i = 0; i < 52; i++) {
@@ -13,33 +16,31 @@ void test(struct Karte deck[52]) {
     }
 }
 
-
-
-
 int main(void) {
-
     srand(time(NULL));
 
-    struct Karte deck[52];                          // speicher reservieren für Kartendeck
+    struct Karte deck[52];
+    struct Spieler spieler;
+
 
     karten_generieren(deck);
-    test(deck);
     karten_mischen(deck);
-    printf("Jetst die gemischten:::::----------------------\n");
-    test(deck);
 
-    //TO-DO: Spieler erstellen und 1 COM Gegner
-    //To_DO: Hadkarten austeilen
+    // Spieler erstellen
+    spieler_erstellen(&spieler);
 
-    struct Spieler {
-        int id;
-        char handkarten[9];
+    // Karten austeilen
+    karten_austeilen(deck, &spieler);
 
-    };
-
-
-
-
+    // Test-Ausgabe
+    printf("\nSpieler: %s\n", spieler.name);
+    for (int i = 0; i < 10; i++) {
+        printf("%s %s (Wert %d)\n",
+               spieler.handkarten[i].zahl,
+               spieler.handkarten[i].farbe,
+               spieler.handkarten[i].wert);
+    }
 
     return 0;
 }
+
