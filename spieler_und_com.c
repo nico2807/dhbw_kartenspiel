@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "spieler_und_com.h"
 
+// Erstellung spieler
 void spieler_erstellen(struct Spieler *s) {
     printf("Geben Sie Ihren Namen ein: ");
     scanf("%49s", s->name);
@@ -14,3 +15,5 @@ void karten_austeilen(struct Karte deck[52], struct Spieler *s) {
         s->handkarten[i] = deck[i];
     }
 }
+
+//TO-DO: Eigenen struct für spieler und com

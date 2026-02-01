@@ -22,7 +22,7 @@ int main(void) {
     struct Karte deck[52];
     struct Spieler spieler;
 
-    // Kartendeck vorbereiten
+
     karten_generieren(deck);
     karten_mischen(deck);
 

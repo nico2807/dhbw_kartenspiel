@@ -1,7 +1,7 @@
 #ifndef SPIELER_UND_COM_H
 #define SPIELER_UND_COM_H
 
-#include "karten.h"   // <-- GANZ WICHTIG
+#include "karten.h"
 
 struct Spieler {
     int id;
@@ -10,7 +10,7 @@ struct Spieler {
     int punkte;
 };
 
-// Funktionsdeklarationen
+
 void spieler_erstellen(struct Spieler *s);
 void karten_austeilen(struct Karte deck[52], struct Spieler *s);
 
