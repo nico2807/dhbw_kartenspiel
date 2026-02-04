@@ -20,7 +20,7 @@ int main(void) {
     srand(time(NULL));
 
     struct Karte deck[52];
-    struct Spieler spieler;
+    struct Entitaet spieler;
 
 
     karten_generieren(deck);
@@ -28,7 +28,6 @@ int main(void) {
 
     // Spieler erstellen
     spieler_erstellen(&spieler);
-
     // Karten austeilen
     karten_austeilen(deck, &spieler);
 

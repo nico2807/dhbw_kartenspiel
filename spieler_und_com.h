@@ -3,7 +3,7 @@
 
 #include "karten.h"
 
-struct Spieler {
+struct Entitaet {
     int id;
     char name[50];
     struct Karte handkarten[10];
@@ -11,7 +11,9 @@ struct Spieler {
 };
 
 
-void spieler_erstellen(struct Spieler *s);
-void karten_austeilen(struct Karte deck[52], struct Spieler *s);
+
+
+void spieler_erstellen(struct Entitaet *s);
+void karten_austeilen(struct Karte deck[52], struct Entitaet *s);
 
 #endif
