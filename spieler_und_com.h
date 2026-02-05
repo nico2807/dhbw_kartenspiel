@@ -14,6 +14,11 @@ struct Entitaet {
 
 
 void spieler_erstellen(struct Entitaet *s);
-void karten_austeilen(struct Karte deck[52], struct Entitaet *s);
+void com_erstellen(struct Entitaet *com);
+
+
+void karten_austeilen(struct Karte deck[52],
+                      struct Entitaet *spieler,
+                      struct Entitaet *bot);
 
 #endif

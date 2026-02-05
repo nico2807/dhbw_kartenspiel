@@ -11,9 +11,9 @@ void spieler_erstellen(struct Entitaet *s) {
     s->punkte = 0;
 }
 
-int spieler_waehlt_bot() {
+int spieler_waehlt_com() {
     int wahl;
-    printf("Gegen welchen der Bots willst du spielen");
+    printf("Waehle einen COM (1, 2 oder 3): ");
     scanf("%d", &wahl);
     return wahl;
 }
@@ -21,14 +21,18 @@ int spieler_waehlt_bot() {
 // bot id wird anhand dieser funktion gewählt
 
 
-void com_erstellen(struct Entitaet *s) {
-
+void com_erstellen(struct Entitaet *com) {
+    com->id = spieler_waehlt_com();
+    com->punkte = 0;
 }
 
-void karten_austeilen(struct Karte deck[52], struct Entitaet *s) {
+void karten_austeilen(struct Karte deck[52],
+                      struct Entitaet *spieler,
+                      struct Entitaet *bot) {
     for (int i = 0; i < 10; i++) {
-        s->handkarten[i] = deck[i];
+        spieler->handkarten[i] = deck[i];
+        bot->handkarten[i]     = deck[i + 10];
     }
 }
 
-//TO-DO: Eigenen struct für spieler und com
+

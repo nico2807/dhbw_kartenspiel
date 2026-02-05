@@ -1,45 +1,40 @@
 #include <stdio.h>
-#include "karten.h"
-
 #include <stdlib.h>
 #include <time.h>
+
+#include "karten.h"
 #include "spieler_und_com.h"
-
-
-
-void test(struct Karte deck[52]) {
-    for (int i = 0; i < 52; i++) {
-        printf("%s %s (Wert %d)\n",
-               deck[i].zahl,
-               deck[i].farbe,
-               deck[i].wert);
-    }
-}
 
 int main(void) {
     srand(time(NULL));
 
     struct Karte deck[52];
     struct Entitaet spieler;
-
+    struct Entitaet com;
 
     karten_generieren(deck);
     karten_mischen(deck);
 
-    // Spieler erstellen
     spieler_erstellen(&spieler);
-    // Karten austeilen
-    karten_austeilen(deck, &spieler);
+    com_erstellen(&com);
 
-    // Test-Ausgabe
-    printf("\nSpieler: %s\n", spieler.name);
+    karten_austeilen(deck, &spieler, &com);
+
+    printf("\nSpieler %s:\n", spieler.name);
     for (int i = 0; i < 10; i++) {
-        printf("%s %s (Wert %d)\n",
+        printf("%s %s (%d)\n",
                spieler.handkarten[i].zahl,
                spieler.handkarten[i].farbe,
                spieler.handkarten[i].wert);
     }
 
+    printf("\n%s:\n", com.name);
+    for (int i = 0; i < 10; i++) {
+        printf("%s %s (%d)\n",
+               com.handkarten[i].zahl,
+               com.handkarten[i].farbe,
+               com.handkarten[i].wert);
+    }
+
     return 0;
 }
-
