@@ -4,6 +4,7 @@
 
 #include "karten.h"
 #include "spieler_und_com.h"
+#include "spiel_mechanik.h"
 
 int main(void) {
     srand(time(NULL));
@@ -12,29 +13,22 @@ int main(void) {
     struct Entitaet spieler;
     struct Entitaet com;
 
+    //Karten, Spieler, COM erstellen und austeilen
     karten_generieren(deck);
     karten_mischen(deck);
-
     spieler_erstellen(&spieler);
     com_erstellen(&com);
 
     karten_austeilen(deck, &spieler, &com);
 
-    printf("\nSpieler %s:\n", spieler.name);
-    for (int i = 0; i < 10; i++) {
-        printf("%s %s (%d)\n",
-               spieler.handkarten[i].zahl,
-               spieler.handkarten[i].farbe,
-               spieler.handkarten[i].wert);
-    }
+    starte_runde();
 
-    printf("\n%s:\n", com.name);
-    for (int i = 0; i < 10; i++) {
-        printf("%s %s (%d)\n",
-               com.handkarten[i].zahl,
-               com.handkarten[i].farbe,
-               com.handkarten[i].wert);
-    }
+
+    zeige_karten(&spieler);
+    zeige_karten(&com);
+
+
+
 
     return 0;
 }

@@ -21,4 +21,6 @@ void karten_austeilen(struct Karte deck[52],
                       struct Entitaet *spieler,
                       struct Entitaet *bot);
 
+void zeige_karten(struct Entitaet *e);
+
 #endif

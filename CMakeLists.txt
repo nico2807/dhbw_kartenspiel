@@ -7,4 +7,6 @@ add_executable(dhbw_kartenspiel main.c
         karten.h
         karten.c
         spieler_und_com.c
-        spieler_und_com.h)
+        spieler_und_com.h
+        spiel_mechanik.c
+        spiel_mechanik.h)
