@@ -4,9 +4,6 @@
 Für COM Gegner engine:
     -Pointerfunktionen und keine Switch Cases = Folie 32 Vorlesung am 30.01
 
-Spieleraufbau:
-    - id = zum Bestimmen welche edentity es ist id:0 = Spieler id:1 = COM_Leicht id:2 = COM_Mittel id:3 = COM_Schweer
-    - handkarten = die 10 Handkarten die ein Spieler bekommt
-    - Punkte = Die Punkte die ein Spieler sammelt ???
-    -
-
+Was noch zu machen ist:
+    - Com gegnerauswahl Random machen
+    - Kartenwahl: bisher statsch 10 aber muss länge entspechen
