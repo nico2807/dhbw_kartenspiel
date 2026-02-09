@@ -50,5 +50,3 @@ void zeige_karten(struct Entitaet *e) {
     }
     printf("\n");
 }
-
-
