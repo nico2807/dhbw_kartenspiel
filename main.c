@@ -7,13 +7,13 @@
 #include "spiel_mechanik.h"
 
 int main(void) {
-    srand(time(NULL));
+    srand((unsigned)time(NULL)); // optional cast
 
     struct Karte deck[52];
     struct Entitaet spieler;
     struct Entitaet com;
 
-    //Karten, Spieler, COM erstellen und austeilen
+    // Karten, Spieler, COM erstellen und austeilen
     karten_generieren(deck);
     karten_mischen(deck);
     spieler_erstellen(&spieler);
@@ -21,14 +21,7 @@ int main(void) {
 
     karten_austeilen(deck, &spieler, &com);
 
-    starte_runde();
-
-
-    zeige_karten(&spieler);
-    zeige_karten(&com);
-
-
-
+    starte_runde(&spieler, &com);   // CHANGED
 
     return 0;
 }
