@@ -5,7 +5,7 @@
 
 
 void karten_generieren(struct Karte deck[52]) {
-    char *farben[4] = {"♠", "♥", "♦", "♣"};
+    char *farben[4] = {"♠", "\x1b[31m♥\x1b[0m", "\x1b[31m♦\x1b[0m", "♣"};
     char *zahlen[13] = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "B", "D", "K", "A"};
     int werte[13] = {2,3,4,5,6,7,8,9,10,11,12,13,14};
 
@@ -16,6 +16,7 @@ void karten_generieren(struct Karte deck[52]) {
             deck[pos].zahl = zahlen[i];
             deck[pos].farbe = farben[j];
             deck[pos].wert = werte[i];
+            deck[pos].status = 1;
             pos++;
         }
     }
