@@ -5,6 +5,7 @@ struct Karte {
     char *zahl;
     char *farbe;
     int wert;
+    int status;
 };
 
 

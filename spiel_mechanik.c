@@ -4,28 +4,51 @@
 
 int zug = 1;
 int gewinner = 2;  // 1 = Spieler      2 = COM      0 = unentschieden
+int starter;
 
 void starte_runde(struct Entitaet *spieler, struct Entitaet *com) {
     printf("========================================\n"
            ">>> Das Spiel beginnt! <<<\n"
-           "========================================\n");
+           "========================================\n\n");
 
-    zug_com(spieler, com);       //Ermittle Starter anhand zug oder letztem gewinner
+    while (zug < 11) {
+        if (gewinner == 1) {
+            zug_com(spieler, com);
+        }
+        else if (gewinner == 2) {
+            zug_com(spieler, com);
+        }
+        else {
+            gewinner = starter;
+            printf("\nUnentschieden – %s bleibt dran!",
+                   starter == 1 ? spieler->name : com->name);
+        }
+    }
 }
-
 
 void zug_com(struct Entitaet *spieler, struct Entitaet *com) {
     int wahl;
     int com_wahl;
-    printf("[Zug %d]\n",zug);
-
-    //zeige_karten(com);
+    starter = 2;
+    printf("\n[Zug %d]\n",zug);
 
     com_wahl = com_legt(com);
     zeige_karten(spieler);
     wahl = kartenwahl(spieler);
     zug += 1;
-    ermittle_sieger(wahl, com_wahl);
+    ermittle_sieger(wahl, com_wahl, spieler, com);
+}
+
+void zug_spieler(struct Entitaet *spieler, struct Entitaet *com) {
+    int wahl;
+    int com_wahl;
+    starter = 1;
+    printf("\n[Zug %d]\n",zug);
+    zeige_karten(spieler);
+    wahl = kartenwahl(spieler);
+    com_wahl = com_legt(com);
+    zug += 1;
+    ermittle_sieger(wahl, com_wahl, spieler, com);
 }
 
 int kartenwahl(struct Entitaet *spieler) {
@@ -35,7 +58,7 @@ int kartenwahl(struct Entitaet *spieler) {
     printf("Spieler legt: %s%s",
         spieler->handkarten[wahl-1].farbe,
         spieler->handkarten[wahl-1].zahl);
-    return wahl;
+    return wahl-1;
 }
 
 int com_legt(struct Entitaet *com) {
@@ -43,19 +66,22 @@ int com_legt(struct Entitaet *com) {
         printf("COM legt die Karte: %s%s",
             com->handkarten[zug-1].farbe,
             com->handkarten[zug-1].zahl);
-        return zug+1;
+        return zug-1;
     }
 }
 
 void ermittle_sieger(int wahl, int com_wahl, struct Entitaet *spieler, struct Entitaet *com) {
     if (spieler->handkarten[wahl].wert > com->handkarten[com_wahl].wert) {
         gewinner = 1;
+        printf("\n%s Gewinnt den Stich!", spieler->name);
     }
     else if (spieler->handkarten[wahl].wert < com->handkarten[com_wahl].wert) {
         gewinner = 2;
+        printf("\n%s Gewinnt den Stich!", com->name);
     }
     else {
         gewinner = 0;
+        printf("Unentschieden");
     }
 }
 
