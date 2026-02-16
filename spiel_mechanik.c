@@ -59,14 +59,11 @@ int kartenwahl(struct Entitaet *spieler) {
     return wahl-1;
 }
 
+
 int com_legt(struct Entitaet *com) {
-    if (com->id == 1) {
-        printf("COM legt die Karte: %s%s",
-            com->handkarten[zug-1].farbe,
-            com->handkarten[zug-1].zahl);
-        return zug-1;
-    }
+    return com->strategie(com);
 }
+
 
 int ermittle_sieger(int wahl, int com_wahl, struct Entitaet *spieler, struct Entitaet *com) {
     if (spieler->handkarten[wahl].wert > com->handkarten[com_wahl].wert) {
@@ -103,7 +100,6 @@ void gesamtsieger(struct Entitaet *spieler, struct Entitaet *com) {
     else {
         printf("\n Gleichstand, %s Gewinnt mit %d Punkten", spieler->name, spieler->punkte);
     }
-
 }
 
 
