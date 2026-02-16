@@ -7,3 +7,4 @@ Für COM Gegner engine:
 Was noch zu machen ist:
     - Com gegnerauswahl Random machen
     - Kartenwahl: bisher statsch 10 aber muss länge entspechen
+    - error handling zahl soll 1-10 sein z.b es ist möglich karte 55 zu wählen oder eine karte die schon gespielt wurde

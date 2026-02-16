@@ -36,17 +36,24 @@ void karten_austeilen(struct Karte deck[52],
 }
 
 void zeige_karten(struct Entitaet *e) {
-    //Eigentlich nur karten von spieler wichtig, aber zum testen auch COM Karten möglich
+
     printf("\nDie Karten von %s sind:\n", e->name);
 
     for (int i = 0; i < 10; i++) {
-        printf("%s%-3s",               //-=linksbündig, 3=feldbreite,s=string
-            e->handkarten[i].farbe,
-            e->handkarten[i].zahl);
+        if (e->handkarten[i].status == 1) {
+            printf("%s%-3s",
+                e->handkarten[i].farbe,
+                e->handkarten[i].zahl);
+        }
     }
-    printf(" \n");
+    printf("\n");
+
+    // Nummerierung nur für aktive Karten
     for (int i = 0; i < 10; i++) {
-        printf("%-4d", i + 1);
+        if (e->handkarten[i].status == 1) {
+            printf("%-4d", i + 1);
+        }
     }
     printf("\n");
 }
+

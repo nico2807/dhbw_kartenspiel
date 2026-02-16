@@ -2,6 +2,7 @@
 #include "spiel_mechanik.h"
 #include "spieler_und_com.h"
 
+
 int zug = 1;
 int gewinner = 2;  // 1 = Spieler      2 = COM      0 = unentschieden
 int starter;
@@ -39,7 +40,7 @@ void zug_spieler(struct Entitaet *spieler, struct Entitaet *com) {
     int wahl;
     int com_wahl;
     starter = 1;
-    printf("\n[Zug %d]\n",zug);
+    printf("\n[Zug %d]",zug);
     zeige_karten(spieler);
     wahl = kartenwahl(spieler);
     com_wahl = com_legt(com);
@@ -51,7 +52,8 @@ int kartenwahl(struct Entitaet *spieler) {
     int wahl;
     printf("Wähle eine Karte: ");
     scanf("%d", &wahl);
-    printf("Spieler legt: %s%s",
+    spieler->handkarten[wahl-1].status = 0;
+    printf("Spieler legt: %s%s\n",
         spieler->handkarten[wahl-1].farbe,
         spieler->handkarten[wahl-1].zahl);
     return wahl-1;
@@ -101,6 +103,9 @@ void gesamtsieger(struct Entitaet *spieler, struct Entitaet *com) {
     else {
         printf("\n Gleichstand, %s Gewinnt mit %d Punkten", spieler->name, spieler->punkte);
     }
+
 }
+
+
 
 //evtl nochmal spielen funktion

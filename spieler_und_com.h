@@ -7,6 +7,7 @@ struct Entitaet {
     int id;
     char name[50];
     struct Karte handkarten[10];
+    int handkartenanzahl;
     int punkte;
 };
 
@@ -22,5 +23,6 @@ void karten_austeilen(struct Karte deck[52],
                       struct Entitaet *bot);
 
 void zeige_karten(struct Entitaet *e);
+
 
 #endif
