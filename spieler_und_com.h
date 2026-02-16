@@ -9,9 +9,12 @@ struct Entitaet {
     struct Karte handkarten[10];
     int handkartenanzahl;
     int punkte;
+    int (*strategie)(struct Entitaet *);
+    int strategie_status;                   //für com3 der abwechselnd größte und kleinste Karte spielt
 };
 
 
+extern int zug;
 
 
 void spieler_erstellen(struct Entitaet *s);
@@ -23,6 +26,11 @@ void karten_austeilen(struct Karte deck[52],
                       struct Entitaet *bot);
 
 void zeige_karten(struct Entitaet *e);
+
+int strategie1(struct Entitaet *com);
+int strategie2(struct Entitaet *com);
+int strategie3(struct Entitaet *com);
+int strategie4(struct Entitaet *com);
 
 
 #endif
