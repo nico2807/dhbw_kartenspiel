@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "spieler_und_com.h"
-#include "spiel_mechanik.h"
 
 
 
@@ -28,14 +27,24 @@ void com_erstellen(struct Entitaet *com) {
     snprintf(com->name, sizeof(com->name), "COM%d", comzahl);
     com->punkte = 0;
 
-    com->strategie_status = 0;
+    com->strategie_status = 0;   //wichtig für com3 dass er abwechselnd spielen kann
 
-    if (comzahl == 1)
-        com->strategie = strategie1;
-    else if (comzahl == 2)
-        com->strategie = strategie2;
-    else
-        com->strategie = strategie3;
+    switch (comzahl) {
+        case 1:
+            com->strategie = strategie1;
+            break;
+        case 2:
+            com->strategie = strategie2;
+            break;
+        case 3:
+            com->strategie = strategie3;
+            break;
+        case 4:
+            com->strategie = strategie4;
+        default:
+            printf("Fehler");
+            break;
+    }
 }
 
 
@@ -53,7 +62,7 @@ void zeige_karten(struct Entitaet *e) {
     printf("\nDie Karten von %s sind:\n", e->name);
 
     for (int i = 0; i < 10; i++) {
-        if (e->handkarten[i].status == 1) {
+        if (e->handkarten[i].status == TRUE) {   ///dahuodhföiuwhfliwqfhöefnewfiwöieföewoifjeä TEST TEST TEST
             printf("%s%-3s",
                 e->handkarten[i].farbe,
                 e->handkarten[i].zahl);
@@ -63,7 +72,7 @@ void zeige_karten(struct Entitaet *e) {
 
     // Nummerierung nur für aktive Karten
     for (int i = 0; i < 10; i++) {
-        if (e->handkarten[i].status == 1) {
+        if (e->handkarten[i].status == TRUE) {
             printf("%-4d", i + 1);
         }
     }
@@ -71,6 +80,7 @@ void zeige_karten(struct Entitaet *e) {
 }
 
 int strategie1(struct Entitaet *com) {
+    //COM Spielt Karten der Reihe nach
     printf("COM legt (Strategie 1): %s%s\n",
            com->handkarten[zug-1].farbe,
            com->handkarten[zug-1].zahl);
@@ -78,12 +88,13 @@ int strategie1(struct Entitaet *com) {
 }
 
 int strategie2(struct Entitaet *com) {
+    //Com Spielt immer höchstmögliche Karte
 
     int max_index = -1;
 
     //Erste aktive Karte finden
     for (int i = 0; i < 10; i++) {
-        if (com->handkarten[i].status == 1) {
+        if (com->handkarten[i].status == TRUE) {
             max_index = i;
             break;
         }
@@ -91,7 +102,7 @@ int strategie2(struct Entitaet *com) {
 
     //Höchste aktive Karte suchen
     for (int i = 0; i < 10; i++) {
-        if (com->handkarten[i].status == 1 &&
+        if (com->handkarten[i].status == TRUE &&
             com->handkarten[i].wert >
             com->handkarten[max_index].wert) {
 
@@ -100,7 +111,7 @@ int strategie2(struct Entitaet *com) {
     }
 
     // Karte als gespielt markieren
-    com->handkarten[max_index].status = 0;
+    com->handkarten[max_index].status = FALSE;
 
     printf("COM spielt höchste Karte: %s%s\n",
            com->handkarten[max_index].farbe,
@@ -111,12 +122,12 @@ int strategie2(struct Entitaet *com) {
 
 
 int strategie3(struct Entitaet *com) {
-
+    //COM spielt abwechseln höchste un niedrigste Karte
     int index = -1;
 
     // Erste aktive Karte finden
     for (int i = 0; i < 10; i++) {
-        if (com->handkarten[i].status == 1) {
+        if (com->handkarten[i].status == TRUE) {
             index = i;
             break;
         }
@@ -129,7 +140,7 @@ int strategie3(struct Entitaet *com) {
     if (com->strategie_status % 2 == 0) {
 
         for (int i = 0; i < 10; i++) {
-            if (com->handkarten[i].status == 1 &&
+            if (com->handkarten[i].status == TRUE &&
                 com->handkarten[i].wert >
                 com->handkarten[index].wert) {
 
@@ -143,7 +154,7 @@ int strategie3(struct Entitaet *com) {
     else {  // ungerade → kleinste spielen
 
         for (int i = 0; i < 10; i++) {
-            if (com->handkarten[i].status == 1 &&
+            if (com->handkarten[i].status == TRUE &&
                 com->handkarten[i].wert <
                 com->handkarten[index].wert) {
 
@@ -158,7 +169,7 @@ int strategie3(struct Entitaet *com) {
            com->handkarten[index].farbe,
            com->handkarten[index].zahl);
 
-    com->handkarten[index].status = 0;
+    com->handkarten[index].status = FALSE;
 
     com->strategie_status++;   // 👈 wechseln
 
@@ -167,7 +178,7 @@ int strategie3(struct Entitaet *com) {
 
 
 int strategie4(struct Entitaet *com) {
-    printf("Strategie 4 spielt immer letzte Karte\n");
+    printf("Strategie 4 wurde gewählt\n");
     return 9;
 }
 

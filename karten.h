@@ -1,12 +1,18 @@
 #ifndef KARTEN_H
 #define KARTEN_H
 
+enum Status {
+    FALSE,
+    TRUE
+};
+
 struct Karte {
     char *zahl;
     char *farbe;
     int wert;
-    int status;
+    enum Status status;
 };
+
 
 
 
