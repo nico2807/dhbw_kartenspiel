@@ -13,7 +13,7 @@ void spieler_erstellen(struct Entitaet *s) {
 //da hier Random machen
 int spieler_waehlt_com() {
     int wahl;
-    printf("Waehle einen COM (1, 2 oder 3): ");
+    printf("Waehle einen COM (1, 2, 3 oder 4): ");
     scanf("%d", &wahl);
     return wahl;
 }
@@ -41,8 +41,10 @@ void com_erstellen(struct Entitaet *com) {
             break;
         case 4:
             com->strategie = strategie4;
+            break;
         default:
-            printf("Fehler");
+            printf("Fehler diesen Bot gibt es nicht\n");
+            com_erstellen(com);
             break;
     }
 }
@@ -62,7 +64,7 @@ void zeige_karten(struct Entitaet *e) {
     printf("\nDie Karten von %s sind:\n", e->name);
 
     for (int i = 0; i < 10; i++) {
-        if (e->handkarten[i].status == TRUE) {   ///dahuodhföiuwhfliwqfhöefnewfiwöieföewoifjeä TEST TEST TEST
+        if (e->handkarten[i].status == TRUE) {
             printf("%s%-3s",
                 e->handkarten[i].farbe,
                 e->handkarten[i].zahl);
@@ -178,8 +180,49 @@ int strategie3(struct Entitaet *com) {
 
 
 int strategie4(struct Entitaet *com) {
-    printf("Strategie 4 wurde gewählt\n");
-    return 9;
+    int kleinste_index = -1;
+    int trumpf_index = -1;
+    int index = -1;
+    int i;
+
+    //kleinsten index finden der aktiven karten
+    for (i = 0; i < 10; i++) {
+        if (com->handkarten[i].status == TRUE) {
+            kleinste_index = i;
+            break;
+        }
+    }
+
+    for (i = 0; i < 10; i++) {
+        if (com->handkarten[i].status == TRUE &&
+            com->handkarten[i].wert < com->handkarten[kleinste_index].wert) {
+            kleinste_index = i;
+            }
+    }
+
+    for (i = 0; i < 10; i++) {
+        if (com->handkarten[i].status == TRUE &&
+            com->handkarten[i].wert > letzter_spieler_wert) {
+
+            if (trumpf_index == -1) {
+                trumpf_index = i;
+            }
+            else if (com->handkarten[i].wert < com->handkarten[trumpf_index].wert) {
+                trumpf_index = i;
+            }
+            }
+    }
+
+    if (trumpf_index != -1) {
+        index = trumpf_index;
+        printf("COM legt: %s%s", com->handkarten[index].farbe,com->handkarten[index].zahl);
+    } else {
+        index = kleinste_index;
+        printf("COM legt: %s%s", com->handkarten[index].farbe,com->handkarten[index].zahl);
+    }
+
+
+    com->handkarten[index].status = FALSE;
+
+    return index;
 }
-
-

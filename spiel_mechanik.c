@@ -6,6 +6,7 @@
 int zug = 1;
 int gewinner = 2;  // 1 = Spieler      2 = COM      0 = unentschieden
 int starter;
+int letzter_spieler_wert = 0;  // globale Variable wie zug
 
 void starte_runde(struct Entitaet *spieler, struct Entitaet *com) {
     printf("========================================\n"
@@ -53,6 +54,7 @@ int kartenwahl(struct Entitaet *spieler) {
     printf("Wähle eine Karte: ");
     scanf("%d", &wahl);
     spieler->handkarten[wahl-1].status = 0;
+    letzter_spieler_wert = spieler->handkarten[wahl-1].wert;
     printf("Spieler legt: %s%s\n",
         spieler->handkarten[wahl-1].farbe,
         spieler->handkarten[wahl-1].zahl);

@@ -15,6 +15,7 @@ struct Entitaet {
 
 
 extern int zug;
+extern int letzter_spieler_wert;
 
 
 void spieler_erstellen(struct Entitaet *s);
