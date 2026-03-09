@@ -51,14 +51,36 @@ void zug_spieler(struct Entitaet *spieler, struct Entitaet *com) {
 
 int kartenwahl(struct Entitaet *spieler) {
     int wahl;
-    printf("Wähle eine Karte: ");
-    scanf("%d", &wahl);
-    spieler->handkarten[wahl-1].status = 0;
-    letzter_spieler_wert = spieler->handkarten[wahl-1].wert;
+
+    while (1) {
+        printf("Wähle eine Karte: ");
+        scanf("%d", &wahl);
+
+        wahl -= 1;
+
+        //Eingabe beschränken
+        if (wahl < 0 || wahl >= 10) {
+            printf("Ungültige Auswahl! Bitte eine Zahl zwischen 1 und 10 wählen.\n");
+            continue;
+        }
+
+        //Nur aktive Katen erlaubt
+        if (spieler->handkarten[wahl].status == 0) {
+            printf("Diese Karte wurde bereits gespielt! Wähle eine andere.\n");
+            continue;
+        }
+
+        break;
+    }
+
+    spieler->handkarten[wahl].status = 0;
+    letzter_spieler_wert = spieler->handkarten[wahl].wert;
+
     printf("Spieler legt: %s%s\n",
-        spieler->handkarten[wahl-1].farbe,
-        spieler->handkarten[wahl-1].zahl);
-    return wahl-1;
+        spieler->handkarten[wahl].farbe,
+        spieler->handkarten[wahl].zahl);
+
+    return wahl;
 }
 
 

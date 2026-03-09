@@ -13,7 +13,7 @@ struct Entitaet {
     int strategie_status;                   //für com3 der abwechselnd größte und kleinste Karte spielt
 };
 
-
+//diese beiden Variablen werden benötigt, daruf basieren die COM Strategien
 extern int zug;
 extern int letzter_spieler_wert;
 
