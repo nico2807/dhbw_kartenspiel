@@ -13,7 +13,7 @@ void starte_runde(struct Entitaet *spieler, struct Entitaet *com) {
            ">>> Das Spiel beginnt! <<<\n"
            "========================================\n\n");
 
-    while (zug < 11) {
+    while (zug < 11) { //Spiel geht genau 10 runden, da 10 Handkarten
         if (gewinner == 1) {
             zug_spieler(spieler, com);
         }
@@ -25,6 +25,7 @@ void starte_runde(struct Entitaet *spieler, struct Entitaet *com) {
 }
 
 void zug_com(struct Entitaet *spieler, struct Entitaet *com) {
+    //Spielverlauf, wenn Com am Zug ist
     int wahl;
     int com_wahl;
     starter = 2;
@@ -38,6 +39,7 @@ void zug_com(struct Entitaet *spieler, struct Entitaet *com) {
 }
 
 void zug_spieler(struct Entitaet *spieler, struct Entitaet *com) {
+    //Spielverlauf, wenn Spieler am Zug ist
     int wahl;
     int com_wahl;
     starter = 1;
@@ -127,5 +129,3 @@ void gesamtsieger(struct Entitaet *spieler, struct Entitaet *com) {
 }
 
 
-
-//evtl nochmal spielen funktion
