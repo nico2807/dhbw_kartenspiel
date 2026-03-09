@@ -13,14 +13,13 @@ struct Entitaet {
     int strategie_status;                   //für com3 der abwechselnd größte und kleinste Karte spielt
 };
 
-
+//diese beiden Variablen werden benötigt, daruf basieren die COM Strategien
 extern int zug;
 extern int letzter_spieler_wert;
 
 
 void spieler_erstellen(struct Entitaet *s);
 void com_erstellen(struct Entitaet *com);
-
 
 void karten_austeilen(struct Karte deck[52],
                       struct Entitaet *spieler,
