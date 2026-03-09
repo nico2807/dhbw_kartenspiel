@@ -185,7 +185,7 @@ int strategie4(struct Entitaet *com) {
     int index = -1;
     int i;
 
-    //kleinsten index finden der aktiven karten
+    //kleinsten index finden der aktiven karte
     for (i = 0; i < 10; i++) {
         if (com->handkarten[i].status == TRUE) {
             kleinste_index = i;

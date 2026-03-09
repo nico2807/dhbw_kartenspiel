@@ -1,7 +1,7 @@
 #include "karten.h"
 #include <stdlib.h>
 
-//Hier wird die Kartengenerierung und das Mischen vorgenommen
+//Hier wird die Kartengenerierung und das Mischen vorgenommen.
 
 
 void karten_generieren(struct Karte deck[52]) {

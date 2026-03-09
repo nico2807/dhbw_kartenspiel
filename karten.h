@@ -1,7 +1,7 @@
 #ifndef KARTEN_H
 #define KARTEN_H
 
-enum Status { //ist die Karte aktiv oder nicht
+enum Status { //ist die Karte aktiv oder nicht? (wie Booleans)
     FALSE,
     TRUE
 };
