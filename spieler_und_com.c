@@ -169,7 +169,6 @@ int strategie3(struct Entitaet *com) {
            com->handkarten[index].zahl);
 
     com->handkarten[index].status = FALSE;
-
     com->strategie_status++;   //status wechseln
 
     return index;

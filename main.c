@@ -9,7 +9,7 @@
 int main(void) {
     srand((unsigned)time(NULL)); // zufällige Zahl generieren
 
-    //structs initialisieren
+    //structs definieren
     struct Karte deck[52];
     struct Entitaet spieler;
     struct Entitaet com;

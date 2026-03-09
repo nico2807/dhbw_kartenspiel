@@ -1,7 +1,6 @@
 #ifndef SPIEL_H
 #define SPIEL_H
 
-
 #include "spieler_und_com.h"
 
 
